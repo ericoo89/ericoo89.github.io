@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerario de Viaje a Japón - Osaka y Kioto</title>
+  <style>
+    /* Reset y estilos base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: url('https://i.ibb.co/4nTHYfT5/japon1.jpg') no-repeat center center/cover;
+      height: 200px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+      transition: background-image 0.5s ease-in-out;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+    }
+    /* Barra de navegación responsiva y scrollable */
+    .nav {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav button {
+      display: inline-block;
+      min-width: 120px;
+      background: none;
+      border: none;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+    .nav button:hover, .nav button.active {
+      background-color: #ddd;
+    }
+    /* Contenedor principal */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    /* Encabezado para cada bloque de tiempo */
+    .time-block {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .event-item {
+      background: #fff;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .headline {
+      font-weight: bold;
+    }
+    .description {
+      margin-top: 4px;
+      color: #555;
+    }
+    .icon-container {
+      margin-top: 5px;
+      display: flex;
+      gap: 10px;
+    }
+    .map-link {
+      color: #34A853; /* 🗺️ */
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+    .ticket-link {
+      color: #2196F3; /* 🎟️ */
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Itinerario de Viaje a Japón</h1>
+  </header>
+  <div class="nav" id="nav">
+    <!-- Los botones se generarán aquí (scroll horizontal) -->
+  </div>
+  <div class="container" id="content">
+    <!-- Aquí se renderizará el itinerario -->
+  </div>
+
+  <script>
+    /* Itinerario actualizado */
+
+    const itinerary = {
+      "14 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Llegada a Aeropuerto Kansai Osaka: Sacar algo de cambio (no todo, en Seven Eleven ya sacaremos más), Comprar Icoca o Pasmo",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Aeropuerto+Kansai+Osaka"
+        },
+        { 
+          time: "Mañana", 
+          event: "Tren al hotel: (Nankai-Limited Express o Nankai-Kuko Line) a Namba Station",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Namba+Station,Osaka"
+        },
+        { 
+          time: "Mañana", 
+          event: "Metro MidosujiLine a Yodoyabashi Station",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Yodoyabashi+Station,Osaka"
+        },
+        { 
+          time: "Mañana", 
+          event: "Llegada al hotel y comer algo por los alrededores",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Hotel,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Paseo por el norte: Ayuntamiento de Osaka",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Ayuntamiento+de+Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Paseo por el norte: Barrio Umeda",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Umeda,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Paseo por el norte: Umeda Sky Building: Atardecer a las 17h (con entrada)",
+          ticketUrl: "https://www.skybldg.co.jp/en/",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Umeda+Sky+Building,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Paseo por el norte: Cenar de camino al hotel (Takimi Koji: abajo de Sky Building hay callejón con restaurantes)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Takimi+Koji,Osaka"
+        },
+        { 
+          time: "Noche", 
+          event: "Descansar pronto en el Hotel (20h)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Hotel,Osaka"
+        }
+      ],
+      "15 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Castillo de Osaka: Comprar entrada en Klook, madrugar",
+          ticketUrl: "https://www.klook.com",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Osaka+Castle"
+        },
+        { 
+          time: "Mañana", 
+          event: "Templo Shitenno-ji: (con Entrada, 8:30h a 16:30h)",
+          ticketUrl: "https://www.klook.com",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple,Osaka"
+        },
+        { 
+          time: "Mañana", 
+          event: "Comer en Kuromon Ichiba Market",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Kuromon+Ichiba+Market,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Zona Namba",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Namba,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Santuario Yasaka Namba",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Yasaka+Shrine,Namba"
+        },
+        { 
+          time: "Tarde", 
+          event: "Namba Parks",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Namba+Parks,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Zona Sur: Pasear por Shinsekai Hondori",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Shinsekai+Hondori,Osaka"
+        },
+        { 
+          time: "Tarde", 
+          event: "Zona Sur: Torre Tsutenkaku",
+          ticketUrl: "https://www.tsutenkaku.co.jp/",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Tsutenkaku+Tower,Osaka"
+        },
+        { 
+          time: "Noche", 
+          event: "Zona Dotombori: Templo Hozen-ji",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Hozenji+Temple,Osaka"
+        },
+        { 
+          time: "Noche", 
+          event: "Zona Dotombori: Cenar en puestos callejeros",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Street+food+Dotombori,Osaka"
+        }
+      ],
+      "16 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Universal Studios Japan: 10:45 - Super Mario World",
+          ticketUrl: "https://www.usj.co.jp/e/",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan"
+        },
+        { 
+          time: "Tarde", 
+          event: "Universal Studios Japan: 17:00h (o antes, si queremos Mundo Harry Potter), 18:10 - Atracción Harry Potter",
+          ticketUrl: "https://www.usj.co.jp/e/",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan"
+        },
+        { 
+          time: "Noche", 
+          event: "Universal Studios Japan",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan"
+        }
+      ],
+      "17 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Santuario Sumiyoshi Taisha: Horario de 6h a 17h",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Sumiyoshi+Taisha,Osaka"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Viajar a Nara",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Nara,Japan"
+        },
+        { 
+          time: "Noche", 
+          event: "Zona Dotombori: Reserva en el Kobe Wabisabi",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Kobe+Wabisabi,Osaka"
+        }
+      ],
+      "18 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Viaje de Osaka a Kioto: Yodoyabashi Station – coger el Limited Express de Keihan Main Line dirección Shichijo Station",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Yodoyabashi+Station,Osaka"
+        },
+        { 
+          time: "Mañana", 
+          event: "Templo Pabellón Dorado y Ryoan-ji (o Castillo Nijo): Comprar entrada (9h a 17h): Una visita ideal para conocer la historia del centro",
+          ticketUrl: "https://nijo-jocastle.city.kyoto.lg.jp/en/",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Nijo+Castle,Kyoto"
+        },
+        { 
+          time: "Mañana", 
+          event: "Comer en Nishiki Market: Recorrer este emblemático mercado y degustar sushi, takoyaki, etc.",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Nishiki+Market,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Paseo por Gion y Pontocho: Disfrutar del ambiente tradicional y pasear por calles empedradas",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Gion,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Santuario Yasaka",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Yasaka+Shrine,Kyoto"
+        },
+        { 
+          time: "Noche", 
+          event: "Cena tradicional: Reservar en un restaurante de cocina kaiseki o izakaya en Gion (por ejemplo, 'Gion Tanto')",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Gion,Kyoto"
+        }
+      ],
+      "19 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Salida temprana desde Kioto a Uji: Tomar el tren en la Estación de Kioto (línea B Kintetsu-kioto Line) a Shinatanabe (20–25 min)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Kyoto+Station,Kyoto"
+        },
+        { 
+          time: "Mañana", 
+          event: "Visita a Byodo-in: Templo Patrimonio de la Humanidad en Uji (aprox. 1h)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Byodo-in,Uji"
+        },
+        { 
+          time: "Mañana", 
+          event: "Alternativa: Pasear por las orillas del río Uji y disfrutar de un café o postre con matcha",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Río+Uji,Uji"
+        },
+        { 
+          time: "Mañana", 
+          event: "Comer en Uji: Restaurante o cafetería próxima a Kaguraden-56 Oguracho (Museo Nintendo) o en el propio museo",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Uji,Japan"
+        },
+        { 
+          time: "Tarde", 
+          event: "Regreso a Kioto: Tomar el tren de vuelta (línea B Kintetsu-kioto Line)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Kyoto+Station,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Torre de Kioto",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Kyoto+Tower,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Hanami Koji Street",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Hanami+Koji,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Ishibei Koji",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Ishibei+Koji,Kyoto"
+        },
+        { 
+          time: "Noche", 
+          event: "Cenar donde veamos",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Restaurants,Kyoto"
+        }
+      ],
+      "20 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Fushimi Inari Taisha: Visitar este santuario temprano para evitar aglomeraciones y pasear entre sus miles de torii",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha,Kyoto",
+          photo: "https://placeimg.com/160/120/arch"
+        },
+        { 
+          time: "Media mañana y mediodía", 
+          event: "Comer en Higashiyama: Probar la cocina tradicional",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Higashiyama+Restaurants,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Calles Sannen-zaka y Ninen-zaka: Pasear por pintorescas calles llenas de tiendas artesanales, souvenirs y cafeterías. Santuario Yasaka y Maruyama Park: Empaparse del ambiente tradicional",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Sannen-zaka+Ninen-zaka,Kyoto"
+        },
+        { 
+          time: "Noche", 
+          event: "Cenar donde veamos",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Restaurants,Kyoto"
+        }
+      ],
+      "21 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Salida a Arashiyama: Tomar tren o taxi temprano (aprox. 30 minutos desde el centro de Kioto)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Arashiyama,Kyoto"
+        },
+        { 
+          time: "Mañana", 
+          event: "Bosque de Bambú y Templo Tenryu-ji: Pasear por el famoso bosque y visitar este templo Patrimonio de la Humanidad",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Tenryu-ji,Kyoto",
+          photo: "https://placeimg.com/160/120/nature"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Almuerzo en Arashiyama: Por ejemplo, en 'Arashiyama Yoshimura'",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Arashiyama+Yoshimura,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Puente Togetsukyo: Paseo por este emblemático puente y paisaje a orillas del río Katsura",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Puente+Togetsukyo,Kyoto"
+        },
+        { 
+          time: "Tarde", 
+          event: "Opcional: Visita al Parque de los Monos de Iwatayama para vistas panorámicas",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Iwatayama+Monkey+Park,Kyoto"
+        },
+        { 
+          time: "Noche", 
+          event: "Regreso y cena: Cenar en un restaurante cercano al hotel",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Restaurants,Kyoto"
+        }
+      ]
+    };
+
+    /* Notas para Osaka */
+    const osakaNotes = "NOTAS OSAKA:\nHotel: Toyoko Inn Osaka Yodoyabashi-eki Minami\n\nCosas Pendientes:\n- Barrio Nipponbashi (Den Den Town) es rollo Akihabara\n- Mirador Harukas 300 (10h a 22h, con entrada)";
+
+    /* Función para actualizar la imagen de cabecera y el título según el día seleccionado */
+    const headerImages = [
+      "https://i.ibb.co/4nTHYfT5/japon1.jpg",
+      "https://i.ibb.co/M5CbKgbD/japon2.jpg",
+      "https://i.ibb.co/wFGjByVx/japon3.jpg",
+      "https://i.ibb.co/NgT0jT2Z/japon4.jpg",
+      "https://i.ibb.co/fYnMbP9b/japon5.jpg"
+    ];
+    function updateHeader(day) {
+      const header = document.querySelector('header');
+      const headerTitle = header.querySelector('h1');
+      let titleText = "Itinerario de Viaje a Japón";
+      if (["14 de Marzo", "15 de Marzo", "16 de Marzo", "17 de Marzo"].includes(day)) {
+        titleText = "Itinerario de Viaje a Japón - Osaka";
+      } else if (["18 de Marzo", "19 de Marzo", "20 de Marzo", "21 de Marzo"].includes(day)) {
+        titleText = "Itinerario de Viaje a Japón - Kioto";
+      }
+      headerTitle.textContent = titleText;
+      const randomIndex = Math.floor(Math.random() * headerImages.length);
+      header.style.backgroundImage = `url('${headerImages[randomIndex]}')`;
+    }
+
+    // Referencias al DOM
+    const nav = document.getElementById("nav");
+    const content = document.getElementById("content");
+
+    // Crear botones de navegación para cada día (scroll horizontal)
+    Object.keys(itinerary).forEach((day, index) => {
+      const btn = document.createElement("button");
+      btn.textContent = day;
+      if (index === 0) btn.classList.add("active");
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderDay(day);
+      });
+      nav.appendChild(btn);
+    });
+
+    // Función para renderizar los eventos individualmente, agrupados por bloque de tiempo.
+    function renderDay(day) {
+      updateHeader(day);
+      const events = itinerary[day];
+      content.innerHTML = "";
+      let lastGroup = "";
+      events.forEach(ev => {
+        const timeKey = ev.time && ev.time.trim() ? ev.time : "Sin horario";
+        if (timeKey !== lastGroup) {
+          const timeHeading = document.createElement("div");
+          timeHeading.classList.add("time-block");
+          timeHeading.textContent = timeKey;
+          content.appendChild(timeHeading);
+          lastGroup = timeKey;
+        }
+        const div = document.createElement("div");
+        div.classList.add("event-item");
+        const eventText = ev.event;
+        let headlineText = eventText;
+        let descriptionText = "";
+        if (eventText.includes(":")) {
+          const parts = eventText.split(":");
+          headlineText = parts[0].trim();
+          descriptionText = parts.slice(1).join(":").trim();
+        }
+        const headlineEl = document.createElement("div");
+        headlineEl.classList.add("headline");
+        headlineEl.innerHTML = `<strong>${headlineText}</strong>`;
+        div.appendChild(headlineEl);
+        if (descriptionText) {
+          const descriptionEl = document.createElement("div");
+          descriptionEl.classList.add("description");
+          descriptionEl.textContent = descriptionText;
+          div.appendChild(descriptionEl);
+        }
+        const iconContainer = document.createElement("span");
+        iconContainer.classList.add("icon-container");
+        if (ev.mapUrl) {
+          const mapLink = document.createElement("a");
+          mapLink.href = ev.mapUrl;
+          mapLink.target = "_blank";
+          mapLink.classList.add("map-link");
+          mapLink.textContent = "🗺️";
+          iconContainer.appendChild(mapLink);
+        }
+        if (ev.ticketUrl) {
+          const ticketLink = document.createElement("a");
+          ticketLink.href = ev.ticketUrl;
+          ticketLink.target = "_blank";
+          ticketLink.classList.add("ticket-link");
+          ticketLink.textContent = "🎟️";
+          iconContainer.appendChild(ticketLink);
+        }
+        div.appendChild(iconContainer);
+        content.appendChild(div);
+      });
+      if (["14 de Marzo", "15 de Marzo", "16 de Marzo", "17 de Marzo"].includes(day)) {
+        const notesDiv = document.createElement("div");
+        notesDiv.classList.add("time-block");
+        notesDiv.style.whiteSpace = "pre-line";
+        notesDiv.textContent = osakaNotes;
+        content.appendChild(notesDiv);
+      }
+    }
+
+    // Renderizar el primer día al cargar la página
+    renderDay(Object.keys(itinerary)[0]);
+  </script>
+</body>
+</html>
