@@ -1,0 +1,20 @@
+{
+  "name": "Itinerario de Viaje a Japón",
+  "short_name": "Viaje Japón",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/192px-Flag_of_Japan.svg.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/512px-Flag_of_Japan.svg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

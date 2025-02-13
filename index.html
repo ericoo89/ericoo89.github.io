@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Itinerario de Viaje a Japón - Osaka y Kioto</title>
+  
+  <!-- Iconos y configuración para PWA -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/180px-Flag_of_Japan.svg.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/32px-Flag_of_Japan.svg.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/16px-Flag_of_Japan.svg.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#ffffff">
+  
   <style>
     /* Reset y estilos base */
     * {
@@ -104,7 +115,7 @@
     <h1>Itinerario de Viaje a Japón</h1>
   </header>
   <div class="nav" id="nav">
-    <!-- Los botones se generarán aquí (scroll horizontal) -->
+    <!-- Los botones de navegación se generan aquí -->
   </div>
   <div class="container" id="content">
     <!-- Aquí se renderizará el itinerario -->
@@ -112,7 +123,6 @@
 
   <script>
     /* Itinerario actualizado */
-
     const itinerary = {
       "14 de Marzo": [
         { 
