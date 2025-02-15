@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Itinerario de Viaje a Japón - Osaka y Kioto</title>
+  <title>Itinerario de Viaje a Japón - Multidestino</title>
   
   <!-- Iconos y configuración para PWA -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/180px-Flag_of_Japan.svg.png">
@@ -165,7 +165,7 @@
     <h1>Itinerario de Viaje a Japón</h1>
   </header>
   <div class="nav" id="nav">
-    <!-- Los botones de navegación se generan aquí (scroll horizontal) -->
+    <!-- Botones de navegación (scroll horizontal) -->
   </div>
   <div class="container" id="content">
     <!-- Aquí se renderizará el itinerario -->
@@ -451,6 +451,35 @@
           event: "Regreso y cena: Cenar en un restaurante cercano al hotel",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Restaurants,Kyoto"
         }
+      ],
+      "22 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Viaje a Tokio y Shinjuku: Salida desde Kioto en Shinkansen (Tokaido Nozomi) – bajar en Shinagawa, ir a Shinjuku, y tomar bus a Juniso Ikenoue",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Shinagawa+Station,Tokyo"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Dejar cosas en el hotel y comer cerca",
+          mapUrl: "#"
+        },
+        { 
+          time: "Tarde", 
+          event: "Parque Central de Shinjuku y Mirador del Gobierno Metropolitano de Tokio (gratis)",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Tokyo+Metropolitan+Government+Building"
+        },
+        { 
+          time: "Noche", 
+          event: "Pasear por Omoide Yokocho, cenar Yakitori, visitar Kabukicho y Golden Gai; alojamiento en Hotel Gracery Shinjuku (Godzilla) y quedarnos en Nishi Shinjuku",
+          mapUrl: "#"
+        }
+      ],
+      "26 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Disfrutar del Sakura: Visitar el Jardín Nacional de Shinjuku Gioen y el Parque Ueno",
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=Ueno+Park,Tokyo"
+        }
       ]
     };
 
@@ -473,6 +502,8 @@
         titleText = "Itinerario de Viaje a Japón - Osaka";
       } else if (["18 de Marzo", "19 de Marzo", "20 de Marzo", "21 de Marzo"].includes(day)) {
         titleText = "Itinerario de Viaje a Japón - Kioto";
+      } else if (["22 de Marzo", "26 de Marzo"].includes(day)) {
+        titleText = "Itinerario de Viaje a Japón - Tokio";
       }
       headerTitle.textContent = titleText;
       const randomIndex = Math.floor(Math.random() * headerImages.length);
