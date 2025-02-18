@@ -165,7 +165,7 @@
     <h1>Itinerario de Viaje a Japón</h1>
   </header>
   <div class="nav" id="nav">
-    <!-- Botones de navegación (scroll horizontal) -->
+    <!-- Botones de navegación (scroll horizontal) se generan aquí -->
   </div>
   <div class="container" id="content">
     <!-- Aquí se renderizará el itinerario -->
@@ -177,6 +177,7 @@
   <script>
     /* Itinerario actualizado */
     const itinerary = {
+      /* Osaka 14-18 (4 noches) */
       "14 de Marzo": [
         { 
           time: "Mañana", 
@@ -210,7 +211,7 @@
         },
         { 
           time: "Tarde", 
-          event: "Paseo por el norte: Umeda Sky Building: Atardecer a las 17h (con entrada)",
+          event: "Paseo por el norte: Umeda Sky Building (atardecer a las 17h) con entrada",
           ticketUrl: "https://www.skybldg.co.jp/en/",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Umeda+Sky+Building,Osaka"
         },
@@ -228,13 +229,13 @@
       "15 de Marzo": [
         { 
           time: "Mañana", 
-          event: "Castillo de Osaka: Comprar entrada en Klook, madrugar",
+          event: "Castillo de Osaka (comprar entrada en klook, madrugar)",
           ticketUrl: "https://www.klook.com",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Osaka+Castle"
         },
         { 
           time: "Mañana", 
-          event: "Templo Shitenno-ji: (con Entrada, 8:30h a 16:30h)",
+          event: "Templo Shitenno-ji (con Entrada, 8:30h a 16:30h)",
           ticketUrl: "https://www.klook.com",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple,Osaka"
         },
@@ -302,7 +303,7 @@
       "17 de Marzo": [
         { 
           time: "Mañana", 
-          event: "Santuario Sumiyoshi Taisha: Horario de 6h a 17h",
+          event: "Santuario Sumiyoshi Taisha (Horario de 6h a 17h)",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Sumiyoshi+Taisha,Osaka"
         },
         { 
@@ -312,10 +313,11 @@
         },
         { 
           time: "Noche", 
-          event: "Zona Dotombori: Reserva en el Kobe Wabisabi",
+          event: "Zona Dotombori (reserva en el Kobe Wabisabi)",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Kobe+Wabisabi,Osaka"
         }
       ],
+      /* Kioto 18-22 (4 noches) */
       "18 de Marzo": [
         { 
           time: "Mañana", 
@@ -330,12 +332,12 @@
         },
         { 
           time: "Mañana", 
-          event: "Comer en Nishiki Market: Recorrer este emblemático mercado y degustar sushi, takoyaki, etc.",
+          event: "Comer en Nishiki Market: Recorre este emblemático mercado y degusta sushi y takoyaki",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Nishiki+Market,Kyoto"
         },
         { 
           time: "Tarde", 
-          event: "Paseo por Gion y Pontocho: Disfrutar del ambiente tradicional y pasear por calles empedradas",
+          event: "Paseo por Gion y Pontocho: Disfruta del ambiente tradicional y pasea por calles empedradas",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Gion,Kyoto"
         },
         { 
@@ -345,7 +347,7 @@
         },
         { 
           time: "Noche", 
-          event: "Cena tradicional: Reservar en un restaurante de cocina kaiseki o izakaya en Gion (por ejemplo, 'Gion Tanto')",
+          event: "Cena tradicional: Reserva en un restaurante de cocina kaiseki o izakaya en Gion (por ejemplo, 'Gion Tanto')",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Gion,Kyoto"
         }
       ],
@@ -452,33 +454,100 @@
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Restaurants,Kyoto"
         }
       ],
+      /* Tokio 22-27 (5 noches) */
       "22 de Marzo": [
         { 
           time: "Mañana", 
-          event: "Viaje a Tokio y Shinjuku: Salida desde Kioto en Shinkansen (Tokaido Nozomi) – bajar en Shinagawa, ir a Shinjuku, y tomar bus a Juniso Ikenoue",
+          event: "Viaje a Tokio y Shinjuku: Salida desde Kioto en Shinkansen; Tokaido Shinkansen Nozomi; bajar en Shinagawa Station; de Shinagawa a Shinjuku; Bus de Shinjuku Sta West a Juniso Ikenoue",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Shinagawa+Station,Tokyo"
         },
         { 
           time: "Mediodía", 
-          event: "Dejar cosas en el hotel y comer cerca",
+          event: "Dejar las cosas en el hotel y comer cerca del hotel",
           mapUrl: "#"
         },
         { 
           time: "Tarde", 
-          event: "Parque Central de Shinjuku y Mirador del Gobierno Metropolitano de Tokio (gratis)",
+          event: "Parque Central de Shinjuku; Mirador del Gobierno Metropolitano de Tokio (Gratis)",
           mapUrl: "https://www.google.com/maps/search/?api=1&query=Tokyo+Metropolitan+Government+Building"
         },
         { 
           time: "Noche", 
-          event: "Pasear por Omoide Yokocho, cenar Yakitori, visitar Kabukicho y Golden Gai; alojamiento en Hotel Gracery Shinjuku (Godzilla) y quedarnos en Nishi Shinjuku",
+          event: "Pasear por Omoide Yokocho, cenar Yakitori; Hotel Gracery Shinjuku (Godzilla); Pasear por Kabukicho; Golden Gai",
+          mapUrl: "#"
+        }
+      ],
+      "23 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Meiji y Shibuya: Ir al santuario Meiji (Gratis, 5:40-17:20h); Ir al centro Shibuya; Santuario Konno Hachimangu; Santuario Toyosaka Inari; Cruce de Shibuya; Estatua de Hachiko; Mirador de Magnet by Shibuya 109; Center Gai; Santuario Chiyoda-Inari; Miyashita Park",
+          mapUrl: "#"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Comer en Tsuta? Ramen estrella michelin (20€ por persona, hay que reservar)",
+          mapUrl: "#"
+        },
+        { 
+          time: "Tarde", 
+          event: "Shibuya Stream; Shibuya Sky, mirador atardecer (con entrada)",
+          mapUrl: "#"
+        },
+        { 
+          time: "Noche", 
+          event: "Cenar donde veamos",
+          mapUrl: "#"
+        }
+      ],
+      "24 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Senso-ji: Ir al Templo Senso-ji (Gratis); Tokio SkyTree; Torre de Tokyo (Con Entrada)",
+          mapUrl: "#"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Comer en Shogun Burger (cerca de Torre de Tokyo)",
+          mapUrl: "#"
+        },
+        { 
+          time: "Tarde", 
+          event: "Ginza",
+          mapUrl: "#"
+        },
+        { 
+          time: "Noche", 
+          event: "Cenar donde veamos",
+          mapUrl: "#"
+        }
+      ],
+      "25 de Marzo": [
+        { 
+          time: "Mañana", 
+          event: "Akihabara: Palacio Imperial Kokyo (Gratis); Paseo por Akihabara y Parque Ueno",
+          mapUrl: "#"
+        },
+        { 
+          time: "Mediodía", 
+          event: "Comer en Kikanbo o Ichiran Ramen",
+          mapUrl: "#"
+        },
+        { 
+          time: "Tarde", 
+          event: "Ir a zona Odaiba",
+          mapUrl: "#"
+        },
+        { 
+          time: "Noche", 
+          event: "Cenar donde veamos",
           mapUrl: "#"
         }
       ],
       "26 de Marzo": [
         { 
           time: "Mañana", 
-          event: "Disfrutar del Sakura: Visitar el Jardín Nacional de Shinjuku Gioen y el Parque Ueno",
-          mapUrl: "https://www.google.com/maps/search/?api=1&query=Ueno+Park,Tokyo"
+          event: "Disfrutar del Sakura y compras: Koishikawa Korakuen; Shinjuku Gyoen; Chidori-ga-fuchi; Río Meguro; Parque Inokashira; Parque Yoyogi",
+          mapUrl: "#"
         }
       ]
     };
@@ -502,7 +571,7 @@
         titleText = "Itinerario de Viaje a Japón - Osaka";
       } else if (["18 de Marzo", "19 de Marzo", "20 de Marzo", "21 de Marzo"].includes(day)) {
         titleText = "Itinerario de Viaje a Japón - Kioto";
-      } else if (["22 de Marzo", "26 de Marzo"].includes(day)) {
+      } else if (["22 de Marzo", "23 de Marzo", "24 de Marzo", "25 de Marzo", "26 de Marzo"].includes(day)) {
         titleText = "Itinerario de Viaje a Japón - Tokio";
       }
       headerTitle.textContent = titleText;
